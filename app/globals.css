@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pvep-bg: #071a12;
+  --color-pvep-bg-elevated: #0c2418;
+  --color-pvep-surface: #143d2a;
+  --color-pvep-border: #1f5c3f;
+  --color-pvep-accent: #c9a227;
+  --color-pvep-accent-soft: #e8d48a;
+  --color-pvep-text: #e8f0eb;
+  --color-pvep-text-muted: #9bb8a8;
+  --slide-max-width: min(96vw, 760px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-pvep-bg);
+  color: var(--color-pvep-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-pvep-accent) 35%, transparent);
+  color: var(--color-pvep-text);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.slide-frame {
+  border: 1px solid color-mix(in srgb, #4cc7a0 22%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.035) inset,
+    0 0 52px color-mix(in srgb, #2d9a78 13%, transparent),
+    0 16px 42px rgba(0, 0, 0, 0.42);
+  background: color-mix(in srgb, var(--color-pvep-bg-elevated) 70%, transparent);
+  transition:
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .slide-frame:hover {
+    border-color: color-mix(in srgb, #63d5b0 38%, transparent);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.045) inset,
+      0 0 62px color-mix(in srgb, #2fc49a 17%, transparent),
+      0 22px 54px rgba(0, 0, 0, 0.46);
+    transform: translateY(-3px) scale(1.006);
+  }
+}
+
+.slide-frame:active {
+  transform: scale(0.998);
+}
+
+.slide-column {
+  width: 100%;
+  max-width: var(--slide-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
